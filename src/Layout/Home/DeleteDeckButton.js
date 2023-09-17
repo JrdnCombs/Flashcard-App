@@ -4,10 +4,14 @@ import { useHistory } from "react-router-dom";
 
 function DeleteDeckButton ({ deck }) {
     const history = useHistory();
+
+    
     const handleDeleteClick = () => {
         if (window.confirm("Delete this deck? You will not be able to recover it.")) {
-        deleteDeck(deck.id);
-      }
+            deleteDeck(deck.id).then(() => {
+                window.location.reload(); // Reload the page after deletion
+            });
+        }
     };
 
     return (
